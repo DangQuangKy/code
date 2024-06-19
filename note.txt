@@ -1,0 +1,71 @@
+// tên thư mục -->  match với url segment
+// trong thư mục thì tên file buộc phải là page.(js, jsx, ts, tsx)
+// trong file page.tsx --> phải export default component
+
+// Nested route
+// các route lồng nhau thì các thư mục cũng lồng nhau
+
+// Dynamic route 
+// khi url chứa id hoặc các search params
+// tên của thư mục phải có dạng [ten params], vd [productId]
+
+// các Dynamic route cũng có thế lồng nhau : nested dynamic route
+// --parent
+//      |----[productId] 
+//             |----[feedbackId]
+
+// match All slug
+// [..slug]
+
+// Route Group
+// (group_name)
+// nhóm các route lại trong cùng 1 thư mục mà không ảnh hưởng đến url 
+
+// metadata: thiết lập các thẻ meta trên head -> phục vụ cho SEO
+// tên object phải là metadata
+// Nếu dùng function thì tên function phải là generateMetadata
+
+// page.tsx
+// layout.tsx -  layout chung cho tất cả các route con
+// not-found.tsx
+// template.tsx - tương tự layout, nhưng sẽ reload lại mỗi lần chuyển route
+// loading.tsx - hiển thị giao diện loading
+// erorr.tsx - hiển thị giao diện erorr
+// default.tsx - hiển thị giao diện mặc định cho các slot trong parallel route 
+
+
+// @ten_thu_muc - ten slot không tính vào url
+
+//(.)ten_thu_muc - intercepting route
+
+// File Hirachy (cấu trúc component)
+<Layout>
+    <Template>
+        <Not-Found>
+            <Suspend fallback={loading}>
+                <ErrorBoundary fallback={erorr}>
+                    <Page>
+                </ ErrorBoundary>  
+            </ Suspend>
+        </ Not-Found>  
+     </ Template>
+</ Layout> 
+
+// Intercepting route
+    /feed ---> /photo : (..) từ feed đi sang photo (đi từ 1 route con sang 1 route con khác ngang hàng)
+(page home)/
+    /feed
+    /photo
+
+(page home)/ ---> /photo : (.) từ home đi sang photo (đi từ route cha vào route con)
+
+/feed/news/  ---> /photo :(..)(..) feed và photo ngang cấp, từ news đi sang photo <=> lỗi thư viện
+
+/feed/news/[id] --> /about : (...) --> về gốc root
+
+
+
+
+
+
+
